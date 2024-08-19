@@ -56,6 +56,10 @@ function App() {
     }
   }
 
+  function handleAmountInFocus() {
+    setQuote(null);
+  }
+
   async function convertHandler() {
     const assemble = await getAssemble(walletAddress, quote);
     console.log(assemble);
@@ -75,7 +79,7 @@ function App() {
       </div>
       <div>
         <div className="input-group mb-3">
-          <input type="text" className="form-control" placeholder="Amount" value={amountIn} onChange={(e) => setAmountIn(e.target.value)} onBlur={handleAmountInOnBlur} />
+          <input type="text" className="form-control" placeholder="Amount" value={amountIn} onFocus={handleAmountInFocus} onChange={(e) => setAmountIn(e.target.value)} onBlur={handleAmountInOnBlur} />
           <span className="input-group-text">USDC</span>
         </div>
         <div className="mb-3">USDA : {quote ? ethers.formatEther(quote.outAmounts[0]) : ""}</div>

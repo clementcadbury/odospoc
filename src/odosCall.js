@@ -95,7 +95,13 @@ async function getAssemble(userAddr, _quote) {
 }
 
 async function sendTransaction(assemble, signer) {
-  return await signer.sendTransaction(assemble);
+  try {
+    return await signer.sendTransaction(assemble);
+  } catch (e) {
+    console.log("erreur sendTransaction :");
+    alert(e);
+    return false;
+  }
 }
 
 export { getQuote, getAssemble, sendTransaction };
