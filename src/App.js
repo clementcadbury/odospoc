@@ -26,21 +26,21 @@ function App() {
   async function connectwalletHandler() {
     if (window.ethereum) {
       provider = new ethers.BrowserProvider(window.ethereum);
-      const hasWalletPermissions = await provider.send("wallet_getPermissions");
+      //const hasWalletPermissions = await provider.send("wallet_getPermissions");
       //console.log(hasWalletPermissions);
-      if (hasWalletPermissions.length > 0 && hasWalletPermissions[0].parentCapability === "eth_accounts") {
-        //connectwalletHandler();
-        let _walletAddress;
-        try {
-          signer = await provider.getSigner();
-          _walletAddress = await signer.getAddress();
-          setConnected(true);
-          setWalletAddress(_walletAddress);
-        } catch (e) {
-          alert("unlock metamask");
-          //console.log(e);
-        }
+      //if (hasWalletPermissions.length > 0 && hasWalletPermissions[0].parentCapability === "eth_accounts") {
+      //connectwalletHandler();
+      let _walletAddress;
+      try {
+        signer = await provider.getSigner();
+        _walletAddress = await signer.getAddress();
+        setConnected(true);
+        setWalletAddress(_walletAddress);
+      } catch (e) {
+        alert("unlock metamask");
+        //console.log(e);
       }
+      //}
     } else {
       alert("install metamask");
     }
@@ -79,6 +79,10 @@ function App() {
           <span className="input-group-text">USDC</span>
         </div>
         <div className="mb-3">USDA : {quote ? ethers.formatEther(quote.outAmounts[0]) : ""}</div>
+        <div className="mb-3">
+          before swap, approve manualy <a href="https://arbiscan.io/token/0xaf88d065e77c8cc2239327c5edb3a432268e5831#writeProxyContract#F1">here</a> for address
+          0xa669e7A0d4b3e4Fa48af2dE86BD4CD7126Be4e13 to spend your USDC (and add six 0)
+        </div>
         <div className="mb-3">
           <button className="btn btn-primary" onClick={convertHandler} disabled={quote !== null ? false : true}>
             Swap
