@@ -84,8 +84,13 @@ function App() {
         </div>
         <div className="mb-3">USDA : {quote ? ethers.formatEther(quote.outAmounts[0]) : ""}</div>
         <div className="mb-3">
-          before swap, approve manualy <a href="https://arbiscan.io/token/0xaf88d065e77c8cc2239327c5edb3a432268e5831#writeProxyContract#F1">here</a> for address
-          0xa669e7A0d4b3e4Fa48af2dE86BD4CD7126Be4e13 to spend your USDC (and add six 0)
+          <ul>
+            <li>chain must be Arbitrum</li>
+            <li>
+              before swap, approve manualy <a href="https://arbiscan.io/token/0xaf88d065e77c8cc2239327c5edb3a432268e5831#writeProxyContract#F1">here</a> for address
+              0xa669e7A0d4b3e4Fa48af2dE86BD4CD7126Be4e13 to spend your USDC (and add six 0)
+            </li>
+          </ul>
         </div>
         <div className="mb-3">
           <button className="btn btn-primary" onClick={convertHandler} disabled={quote !== null ? false : true}>
