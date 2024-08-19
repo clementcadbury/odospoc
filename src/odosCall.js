@@ -35,7 +35,7 @@ let assembleRequestBody = {
 /**
  *
  * @param {string} userAddr
- * @param {string} amountIn
+ * @param {string} amountIn amount in tokens, decimals will be added
  */
 async function getQuote(userAddr, amountIn) {
   if (isNaN(amountIn)) {
@@ -66,7 +66,7 @@ async function getQuote(userAddr, amountIn) {
 /**
  *
  * @param {string} userAddr
- * @param {object} _quote
+ * @param {object} _quote reponse from odos api quote
  */
 async function getAssemble(userAddr, _quote) {
   if (_quote === null) {
@@ -94,6 +94,12 @@ async function getAssemble(userAddr, _quote) {
   }
 }
 
+/**
+ *
+ * @param {object} assemble reponse from odo api call assemble
+ * @param {object} signer ethers.js signer
+ * @returns
+ */
 async function sendTransaction(assemble, signer) {
   try {
     return await signer.sendTransaction(assemble);
